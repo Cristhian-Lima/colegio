@@ -23,20 +23,4 @@ class CursoModel extends Model
 
 		return $res;
 	}
-	//function getCurso($nivel, $curso)
-	//{
-	//$conn = $this->db->connect();
-	//$nivel = $nivel[0];
-
-	//if ($nivel == 'i') {
-	//$nivel = 'n';
-	//$curso = '';
-	//}
-
-	//$qry = "SELECT * FROM estudiante WHERE cod_curso LIKE 'c-$nivel$curso%'";
-
-	//$res = $conn->query($qry);
-
-	//return $res;
-	//}
 }

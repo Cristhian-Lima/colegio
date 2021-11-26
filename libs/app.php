@@ -1,8 +1,5 @@
 <?php
 
-/**
- * 
- */
 class App
 {
 
@@ -55,6 +52,18 @@ class App
         }
         break;
 
+      case 'calificacion':
+        require_once 'controllers/calificacion.php';
+        $controller = new Calificacion();
+        $controller->loadModel('calificacion');
+
+        if (!isset($_GET['ci'])) {
+          header("Location: " . URL);
+        }
+
+        $controller->getCalificacion();
+        $controller->render();
+        break;
       case 'materias':
         require_once 'controllers/materia.php';
         $controller = new Materia();

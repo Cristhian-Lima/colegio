@@ -10,8 +10,12 @@ body {
 
 /*padre*/
 .root {
-  display: flex;
-  flex-direction: column;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+
+  display: grid;
+  min-width: 100vh;
+  grid-template-columns: auto 1fr auto;
 }
 
 .succes {
