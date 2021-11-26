@@ -67,6 +67,8 @@ class App
       case 'materias':
         require_once 'controllers/materia.php';
         $controller = new Materia();
+        $controller->loadModel('materia');
+        $controller->materias();
         $controller->render();
         break;
       case 'api':

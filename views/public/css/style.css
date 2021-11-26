@@ -10,12 +10,12 @@ body {
 
 /*padre*/
 .root {
-  /*display: flex;*/
-  /*flex-direction: column;*/
+  display: flex;
+  flex-direction: column;
 
   display: grid;
-  min-width: 100vh;
-  grid-template-columns: auto 1fr auto;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
 }
 
 .succes {
@@ -82,7 +82,7 @@ body {
 .root .footer p {
   text-align: center;
   padding: 7px;
-  color: #000;
+  color: #fff;
 }
 
 /*-------------------Footer-------------------------*/

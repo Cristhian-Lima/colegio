@@ -1,7 +1,7 @@
 .curso .card h2 {
   margin: auto;
 }
-.curso .tabla {
+.tabla {
   border-collapse: collapse;
   margin: auto;
   width: 90%;
@@ -9,21 +9,21 @@
   overflow: hidden;
 }
 
-.curso .tabla .head {
+.tabla .head {
   border-bottom: 2px solid black;
 }
-.curso .tabla .body tr td,
-.curso .tabla .head tr th {
+.tabla .body tr td,
+.tabla .head tr th {
   border-bottom: 1px solid #ddd;
   text-align: start;
   padding: 5px 10px;
 }
 
-.curso .tabla .body tr:hover {
+.tabla .body tr:hover {
   background: #ddd;
 }
 
-.curso .tabla .body tr td a {
+.tabla .body tr td a {
   text-decoration: none;
   color: #0088ff;
 }

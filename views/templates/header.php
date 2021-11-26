@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet" />
 
   <!-- Mis estilos -->
+  <link rel="shortcut icon" href="<?= URL . "favicon.ico" ?>" type="image/x-icon">
   <link rel="stylesheet" href=" <?php echo URL . 'views/public/css/style.css' ?>" />
   <link rel="stylesheet" href=" <?php echo URL . 'views/public/css/cards.css' ?>" />
   <link rel="stylesheet" href=" <?php echo URL . 'views/public/css/cards-curso.css' ?>" />
