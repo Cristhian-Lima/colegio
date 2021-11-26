@@ -1,0 +1,44 @@
+.curso .card h2 {
+  margin: auto;
+}
+.curso .tabla {
+  border-collapse: collapse;
+  margin: auto;
+  width: 90%;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+
+.curso .tabla .head {
+  border-bottom: 2px solid black;
+}
+.curso .tabla .body tr td,
+.curso .tabla .head tr th {
+  border-bottom: 1px solid #ddd;
+  text-align: start;
+  padding: 5px 10px;
+}
+
+.curso .tabla .body tr:hover {
+  background: #ddd;
+}
+
+.curso .tabla .body tr td a {
+  text-decoration: none;
+  color: #0088ff;
+}
+
+.main .volver {
+  margin-top: 15px;
+  display: flex;
+}
+.main .volver a {
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  text-decoration: none;
+  background: #0af;
+  color: #fff;
+  border-radius: 4px;
+  width: 100px;
+}
