@@ -1,0 +1,85 @@
+form .form {
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+  border-radius: 10px;
+  transition: 1s ease;
+}
+
+.form .row.hidden {
+  display: none;
+}
+.form .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
+  transition: 0.3s;
+}
+.form .row .col .add {
+  background: transparent;
+  border: none;
+  margin: auto;
+  font-size: 20px;
+  padding-right: 10px;
+  font-family: "Cairo", sans-serif;
+}
+
+.form .row input,
+.form .row select,
+.form .row label {
+  width: 50%;
+}
+
+.form .row input[type="text"],
+.form .row input[type="email"],
+.form .row input[type="password"],
+.form .row select {
+  font-family: "Cairo", sans-serif;
+}
+
+.form .row input,
+.form .row select {
+  outline: none;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #0af;
+}
+.form .row input:focus,
+.form .row select:focus {
+  border: 2px solid #0af;
+  border-radius: 4px;
+}
+
+.form .row .btn {
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+  text-decoration: none;
+  border: 2px solid #0af;
+  border-radius: 4px;
+  width: 100%;
+  transition: 0.3s linear;
+  font-family: "Cairo", sans-serif;
+  text-decoration: none;
+  color: #000;
+}
+.form .row .btn:hover {
+  background: #0af;
+  box-shadow: 0 0 10px 1px #0af;
+  color: #fff;
+}
+
+@media screen and (max-width: 480px) {
+  .form .row {
+    flex-direction: column;
+    font-size: 20px;
+  }
+  .form .row input,
+  .form .row select,
+  .form .row label {
+    width: 100%;
+  }
+}

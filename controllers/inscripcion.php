@@ -4,12 +4,20 @@ class Inscripcion extends Controller
 	function __construct()
 	{
 		parent::__construct();
+		$this->verificarAdministrador();
 		$this->view->message = "";
 	}
 
 	function render()
 	{
 		$this->view->render('inscripcion/index');
+	}
+
+	public function verificarAdministrador()
+	{
+		if (!isset($_SESSION['admin'])) {
+			header("Location: " . URL);
+		}
 	}
 
 	function registrarEstudiante()

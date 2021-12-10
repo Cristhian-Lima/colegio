@@ -2,7 +2,6 @@
 
 class App
 {
-
   public function __construct()
   {
     $url = isset($_GET['url']) ? $_GET['url'] : 'main';
@@ -15,6 +14,16 @@ class App
 
     //las rutas de la pagina
     switch ($url[0]) {
+      case 'login':
+        require_once 'controllers/login.php';
+
+        $login = new Login();
+
+        $login->loadModel('login');
+        $login->verificarLogin();
+
+        $login->render();
+        break;
       case 'main':
         if ($tam >= 1) {
           require_once 'controllers/main.php';
@@ -38,6 +47,33 @@ class App
         } else {
           $controller->render();
         }
+        break;
+      case 'profesores':
+        require_once 'controllers/profesores.php';
+        $controller = new Profesores();
+
+        $controller->loadModel('profesores'); // llama al modelo
+        $controller->getProfesores();
+        $controller->getMaterias();
+        if (isset($url[1])) {
+          if ($url[1] === 'addProf') {
+            $controller->addProf();
+          }
+        } else {
+          $controller->render();
+        }
+        break;
+      case 'administradores':
+        require_once 'controllers/administrador.php';
+        $controller = new Administrador();
+
+        $controller->loadModel('administrador');
+        $controller->getAdministradores();
+
+        if (isset($url[1]) && $url[1] === 'add') {
+          $controller->addAdmin();
+        }
+        $controller->render();
         break;
       case 'inscripcion':
         require_once 'controllers/inscripcion.php';
@@ -69,7 +105,25 @@ class App
         $controller = new Materia();
         $controller->loadModel('materia');
         $controller->materias();
-        $controller->render();
+
+        if (isset($url[1]) && $url[1] === 'addMateria') {
+          $controller->addMateria();
+        } else {
+          $controller->render();
+        }
+        break;
+      case 'edit':
+        require_once 'controllers/edit.php';
+        $controller = new Edit();
+
+        $controller->loadModel('edit');
+        if ($url[1] === 'estudiante') {
+          $controller->getEstudiante();
+        } elseif ($url[1] === 'profesor') {
+          $controller->getProfesor();
+        } elseif ($url[1] === 'guardar') {
+          $controller->guardar();
+        }
         break;
       case 'api':
         require_once 'controllers/api.php';

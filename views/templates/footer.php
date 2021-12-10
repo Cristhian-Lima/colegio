@@ -1,7 +1,6 @@
 <footer class='footer'>
-  <p> Copyrigth &copy Autor: Cristhian Lima Blanco</p>
+  <p> Copyrigth &copy Autor: Colegio</p>
 </footer>
-
 </body>
 
 </html>
