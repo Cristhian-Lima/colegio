@@ -6,7 +6,7 @@ class DeleteModel extends Model
 		parent::__construct();
 	}
 
-	public function getMateria($ci_prof)
+	public function getMateriaOfProf($ci_prof)
 	{
 		$conn = $this->db->connect();
 
@@ -17,6 +17,13 @@ class DeleteModel extends Model
 			INNER JOIN dicta ON materia.cod_mat=dicta.cod_mat
 			WHERE dicta.ci_prof=$ci_prof"
 		);
+		return $res;
+	}
+	public function getMateria($cod_mat)
+	{
+		$conn = $this->db->connect();
+
+		$res = $conn->query("SELECT * FROM materia WHERE cod_mat='$cod_mat'");
 		return $res;
 	}
 	public function getMaterias()
@@ -86,5 +93,17 @@ class DeleteModel extends Model
 			return false;
 		}
 		return true;
+	}
+	public function deleteMat($cod_mat)
+	{
+		$conn = $this->db->connect();
+
+		$qry_del = "DELETE FROM materia WHERE cod_mat='$cod_mat'";
+		$res = $conn->query($qry_del);
+		if (!$res) {
+			echo $conn->error;
+			return false;
+		}
+		return $res;
 	}
 }

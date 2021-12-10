@@ -53,7 +53,7 @@ class Delete extends Controller
 				$row = $profesor->fetch_assoc();
 				$this->view->prof = $row;
 			}
-			$materia = $this->model->getMateria($id_prof);
+			$materia = $this->model->getMateriaOfProf($id_prof);
 			if ($materia->num_rows) {
 				$row = $materia->fetch_assoc();
 				$this->view->mat = $row;
@@ -61,6 +61,21 @@ class Delete extends Controller
 			$_SESSION['url_ref'] = $_SERVER['HTTP_REFERER'];
 		}
 		$this->render('deleteProf');
+	}
+	public function getMateria()
+	{
+		if (isset($_GET['cod'])) {
+			$cod_mat = $_GET['cod'];
+
+			$res = $this->model->getMateria($cod_mat);
+
+			if ($res && $res->num_rows) {
+				$row = $res->fetch_assoc();
+				$this->view->mat = $row;
+			}
+			$_SESSION['url_ref'] = $_SERVER['HTTP_REFERER'];
+		}
+		$this->render('deleteMat');
 	}
 	public function ok()
 	{
@@ -71,6 +86,9 @@ class Delete extends Controller
 					break;
 				case 'profesor':
 					$this->deleteProf();
+					break;
+				case 'materia':
+					$this->deleteMat();
 					break;
 			}
 		}
@@ -88,6 +106,14 @@ class Delete extends Controller
 	{
 		$id_prof = $_POST['ci_prof'];
 		$resDel = $this->model->deleteProf($id_prof);
+		if ($resDel) {
+			header("Location:" . $this->url_ref);
+		}
+	}
+	public function deleteMat()
+	{
+		$cod_mat = $_POST['cod_mat'];
+		$resDel = $this->model->deleteMat($cod_mat);
 		if ($resDel) {
 			header("Location:" . $this->url_ref);
 		}

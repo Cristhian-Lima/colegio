@@ -141,6 +141,8 @@ class App
             $controller->getEstudiante();
           } elseif ($url[1] === 'profesor') {
             $controller->getProfesor();
+          } elseif ($url[1] === 'materia') {
+            $controller->getMateria();
           } elseif ($url[1] === 'ok') {
             $controller->ok();
           }
