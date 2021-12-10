@@ -56,6 +56,7 @@
 			<div class="row">
 				<input type="hidden" name="ci_est" value="<?= $this->est['ci_est'] ?>">
 				<input type="hidden" name="guardar" value="estudiante">
+				<a href="<?= $_SERVER['HTTP_REFERER'] ?>" class="btn">Volver</a>
 				<button class="btn" type="submit">Enviar</button>
 			</div>
 		</div>

@@ -117,12 +117,35 @@ class App
         $controller = new Edit();
 
         $controller->loadModel('edit');
-        if ($url[1] === 'estudiante') {
-          $controller->getEstudiante();
-        } elseif ($url[1] === 'profesor') {
-          $controller->getProfesor();
-        } elseif ($url[1] === 'guardar') {
-          $controller->guardar();
+        if (isset($url[1])) {
+          if ($url[1] === 'estudiante') {
+            $controller->getEstudiante();
+          } elseif ($url[1] === 'profesor') {
+            $controller->getProfesor();
+          } elseif ($url[1] === 'materia') {
+            $controller->getMateria();
+          } elseif ($url[1] === 'guardar') {
+            $controller->guardar();
+          }
+        } else {
+          header('Location:' . URL);
+        }
+        break;
+      case 'delete':
+        require_once 'controllers/delete.php';
+        $controller = new Delete();
+
+        $controller->loadModel('delete');
+        if (isset($url[1])) {
+          if ($url[1] === 'estudiante') {
+            $controller->getEstudiante();
+          } elseif ($url[1] === 'profesor') {
+            $controller->getProfesor();
+          } elseif ($url[1] === 'ok') {
+            $controller->ok();
+          }
+        } else {
+          header('Location:' . URL);
         }
         break;
       case 'api':
@@ -143,6 +166,6 @@ class App
   private function mostrarError($mensaje)
   {
     require_once 'controllers/errors.php';
-    $controller = new Errors($mensaje);
+    new Errors($mensaje);
   }
 }

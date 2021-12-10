@@ -6,11 +6,18 @@ class Edit extends Controller
 		parent::__construct();
 		$this->valAdmin();
 
+		$this->setUrlRef();
+
 		$this->view->est = [];
 		$this->view->prof = [];
 		$this->view->mat = [];
 	}
 
+	private function setUrlRef()
+	{
+		$this->url_ref = $_SESSION['url_ref'];
+		$_SESSION['url_ref'] = null;
+	}
 	public function render($view = "index")
 	{
 		$this->view->render("edit/$view");
@@ -33,8 +40,28 @@ class Edit extends Controller
 				$row = $estudiante->fetch_assoc();
 				$this->view->est = $row;
 			}
+			$_SESSION['url_ref'] = $_SERVER['HTTP_REFERER'];
 		}
 		$this->render('editEstudiante');
+	}
+	public function getMateria()
+	{
+		$cod_mat = $_GET['cod'];
+		$materia = $this->model->getMateria($cod_mat);
+		if ($materia->num_rows) {
+			$row = $materia->fetch_assoc();
+			$this->view->mat = $row;
+		}
+		$this->render('editMateria');
+	}
+	public function getMaterias()
+	{
+		$materias = $this->model->getMaterias();
+		if ($materias->num_rows) {
+			while ($row = $materias->fetch_assoc()) {
+				array_push($this->view->mat, $row);
+			}
+		}
 	}
 	public function getProfesor()
 	{
@@ -45,12 +72,8 @@ class Edit extends Controller
 				$row = $profesor->fetch_assoc();
 				$this->view->prof = $row;
 			}
-			$materias = $this->model->getMaterias();
-			if ($materias->num_rows) {
-				while ($row = $materias->fetch_assoc()) {
-					array_push($this->view->mat, $row);
-				}
-			}
+			$this->getMaterias();
+			$_SESSION['url_ref'] = $_SERVER['HTTP_REFERER'];
 		}
 		$this->render('editProfesor');
 	}
@@ -65,8 +88,8 @@ class Edit extends Controller
 				case 'profesor':
 					$this->actualizarProf();
 					break;
-				default:
-
+				case 'materia':
+					$this->actualizarMat();
 					break;
 			}
 		}
@@ -89,7 +112,7 @@ class Edit extends Controller
 			];
 			$res = $this->model->actualizarEst($est, $curso);
 			if ($res) {
-				header("Location:" . URL);
+				header("Location:" . $this->url_ref);
 			}
 		} else {
 			$_SESSION['msg'] = "No selecciono nivel, curso y/o paralelo";
@@ -101,11 +124,18 @@ class Edit extends Controller
 		if (isset($_POST['cod_mat'])) {
 			$res = $this->model->actualizarProf($_POST);
 			if ($res) {
-				header("Location:" . URL . "profesores");
+				header("Location:" . $this->url_ref);
 			}
 		} else {
 			$_SESSION['msg'] = "No selecciono materia";
 			header("Location:" . URL . "edit/profesor?ci={$_POST['ci_est']}");
+		}
+	}
+	private function actualizarMat()
+	{
+		$res = $this->model->actualizarMat($_POST);
+		if ($res) {
+			header("Location: " . URL . "materias");
 		}
 	}
 }

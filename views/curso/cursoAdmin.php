@@ -17,8 +17,9 @@
 				<td> <?= $estudiante['apellido_pat_est'] ?></td>
 				<td> <?= $estudiante['apellido_mat_est'] ?></td>
 				<td> <?= $estudiante['telefono_padre'] ?></td>
-				<td><a href="<?= URL . "calificacion?ci={$estudiante['ci_est']}"  ?>">Calificacion</a></td>
+				<td><a href="<?= URL . "calificacion?ci={$estudiante['ci_est']}"  ?>"><i class="far fa-sticky-note"></i></a></td>
 				<td><a href="<?= URL . "edit/estudiante?ci={$estudiante['ci_est']}"  ?>"><i class="far fa-edit"></i></a></td>
+				<td><a href="<?= URL . "delete/estudiante?ci={$estudiante['ci_est']}"  ?>"><i class="far fa-trash-alt"></i></a></td>
 			</tr>
 		<?php endforeach ?>
 	</tbody>

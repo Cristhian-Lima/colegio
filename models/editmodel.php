@@ -37,6 +37,13 @@ class EditModel extends Model
 		$res = $conn->query("SELECT * FROM materia");
 		return $res;
 	}
+	public function getMateria($cod_mat)
+	{
+		$conn = $this->db->connect();
+
+		$res = $conn->query("SELECT * FROM materia WHERE cod_mat='$cod_mat'");
+		return $res;
+	}
 
 	public function actualizarEst($est, $curso)
 	{
@@ -90,15 +97,27 @@ class EditModel extends Model
 
 		$res = $conn->query($qry_dicta);
 		if (!$res) {
-			echo "Dicta: " . $conn->error;
 			return false;
 		}
 		$res = $conn->query($qry_prof);
 		if (!$res) {
-			echo "Profesor: " . $conn->error;
 			return false;
 		}
-
 		return true;
+	}
+	public function actualizarMat($mat)
+	{
+		$conn = $this->db->connect();
+
+		$qry_update = "
+			UPDATE materia
+			SET nombre_mat='{$mat['nombre_mat']}'
+			WHERE cod_mat='{$mat['cod_mat']}'
+		";
+		$res = $conn->query($qry_update);
+		if (!$res) {
+			return false;
+		}
+		return $res;
 	}
 }

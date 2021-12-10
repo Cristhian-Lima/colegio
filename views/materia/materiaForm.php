@@ -13,5 +13,21 @@
 		</div>
 	</div>
 </form>
+<table class="tabla">
+	<thead class="head">
+		<tr>
+			<th>Materia</th>
+		</tr>
+	</thead>
+	<tbody class="body">
+		<?php foreach ($this->materias as $materia) : ?>
+			<tr>
+				<td><?= $materia['nombre_mat'] ?></td>
+				<td><a href=" <?= URL . "edit/materia?cod={$materia['cod_mat']}" ?>"><i class="far fa-edit"></i></a></td>
+				<td><a href=" <?= URL . "delete/materia?cod={$materia['cod_mat']}" ?>"><i class="far fa-trash-alt"></i></a></td>
+			</tr>
+		<?php endforeach ?>
+	</tbody>
+</table>
 
 <script src="<?= URL . "views/public/js/inputsUpdate.js" ?>"></script>
