@@ -1,7 +1,9 @@
 <?php require_once 'views/templates/header.php'; ?>
 
 <div class="main">
-	<h1 class="title">Administradores</h1>
+	<div class="card">
+		<h1 class="title">Administradores</h1>
+	</div>
 	<?php if (isset($this->mensaje['type'])) : ?>
 		<div class=card "<?= $this->mensaje['type'] ?>">
 			<p><?= $this->mensaje['mensaje'] ?></p>
@@ -25,7 +27,8 @@
 					<td><?= $admin['cod_admin'] ?></td>
 					<td><?= $admin['nombre_user'] ?></td>
 					<td><?= $admin['correo'] ?></td>
-					<td><a href="<?= URL . "delete/admin?id={$admin['cod_admin']}" ?>"><i class="fas fa-trash-alt"></i></a></td>
+					<td><a href="<?= URL . "edit/administrador?id={$admin['cod_admin']}" ?>"><i class="fas fa-user-edit"></i></a></td>
+					<td><a href="<?= URL . "delete/administrador?id={$admin['cod_admin']}" ?>"><i class="fas fa-trash-alt"></i></a></td>
 				</tr>
 			<?php endforeach ?>
 		</tbody>

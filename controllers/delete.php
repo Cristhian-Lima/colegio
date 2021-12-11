@@ -7,9 +7,11 @@ class Delete extends Controller
 		$this->verificarAdmin();
 
 		$this->setUrlRef();
+		$this->view->mensaje = "";
 		$this->view->est = [];
 		$this->view->prof = [];
 		$this->view->mat = [];
+		$this->view->admin = [];
 	}
 
 	private function setUrlRef()
@@ -77,6 +79,26 @@ class Delete extends Controller
 		}
 		$this->render('deleteMat');
 	}
+	public function getAdmin()
+	{
+		if (isset($_GET['id'])) {
+			$cod_admin = $_GET['id'];
+			$res = $this->model->getAdmin($cod_admin);
+
+			if ($res && $res->num_rows) {
+				$row = $res->fetch_assoc();
+				if ($row === $_SESSION['admin']) {
+					$this->view->isAdmin = [
+						"isSession" => true,
+						"mensaje" => "No puedes eliminar al administrador con el que iniciaste sesion"
+					];
+				}
+				$this->view->admin = $row;
+			}
+			$_SESSION['url_ref'] = $_SERVER['HTTP_REFERER'];
+		}
+		$this->render('deleteAdmin');
+	}
 	public function ok()
 	{
 		if (isset($_POST['ok'])) {
@@ -86,6 +108,9 @@ class Delete extends Controller
 					break;
 				case 'profesor':
 					$this->deleteProf();
+					break;
+				case 'administrador':
+					$this->deleteAdmin();
 					break;
 				case 'materia':
 					$this->deleteMat();
@@ -114,6 +139,15 @@ class Delete extends Controller
 	{
 		$cod_mat = $_POST['cod_mat'];
 		$resDel = $this->model->deleteMat($cod_mat);
+		if ($resDel) {
+			header("Location:" . $this->url_ref);
+		}
+	}
+	public function deleteAdmin()
+	{
+		$cod_admin = $_POST['cod_admin'];
+		$resDel = $this->model->deleteAdmin($cod_admin);
+
 		if ($resDel) {
 			header("Location:" . $this->url_ref);
 		}

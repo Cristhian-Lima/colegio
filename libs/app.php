@@ -124,6 +124,8 @@ class App
             $controller->getProfesor();
           } elseif ($url[1] === 'materia') {
             $controller->getMateria();
+          } elseif ($url[1] === 'administrador') {
+            $controller->getAdmin();
           } elseif ($url[1] === 'guardar') {
             $controller->guardar();
           }
@@ -141,10 +143,14 @@ class App
             $controller->getEstudiante();
           } elseif ($url[1] === 'profesor') {
             $controller->getProfesor();
+          } elseif ($url[1] === 'administrador') {
+            $controller->getAdmin();
           } elseif ($url[1] === 'materia') {
             $controller->getMateria();
           } elseif ($url[1] === 'ok') {
             $controller->ok();
+          } else {
+            echo "metodo no encontrado";
           }
         } else {
           header('Location:' . URL);

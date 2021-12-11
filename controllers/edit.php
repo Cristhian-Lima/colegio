@@ -73,11 +73,24 @@ class Edit extends Controller
 				$this->view->prof = $row;
 			}
 			$this->getMaterias();
-			$_SESSION['url_ref'] = $_SERVER['HTTP_REFERER'];
 		}
 		$this->render('editProfesor');
 	}
+	public function getAdmin()
+	{
+		if (isset($_GET['id'])) {
+			$id_admin = $_GET['id'];
+			$admin = $this->model->getAdmin($id_admin);
 
+			if ($admin && $admin->num_rows) {
+				$row = $admin->fetch_assoc();
+				$this->view->admin = $row;
+			}
+		}
+		$this->render('editAdministrador');
+	}
+
+	/*----------------- guardar------------------------*/
 	public function guardar()
 	{
 		if (isset($_POST['guardar'])) {
@@ -91,9 +104,14 @@ class Edit extends Controller
 				case 'materia':
 					$this->actualizarMat();
 					break;
+				case 'administrador':
+					$this->actualizarAdmin();
+					break;
 			}
 		}
 	}
+
+	/*----------------- Actualizar------------------------*/
 
 	private function actualizarEst()
 	{
@@ -136,6 +154,14 @@ class Edit extends Controller
 		$res = $this->model->actualizarMat($_POST);
 		if ($res) {
 			header("Location: " . URL . "materias");
+		}
+	}
+	private function actualizarAdmin()
+	{
+		$_POST['password'] = md5($_POST['password']);
+		$res = $this->model->actualizarAdmin($_POST);
+		if ($res) {
+			header("Location: " . URL . "administradores");
 		}
 	}
 }

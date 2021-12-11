@@ -58,6 +58,12 @@ class DeleteModel extends Model
 		echo $conn->error;
 		return $res;
 	}
+	public function getAdmin($cod_admin)
+	{
+		$conn = $this->db->connect();
+		$res = $conn->query("SELECT * FROM administrador WHERE cod_admin=$cod_admin");
+		return $res;
+	}
 	public function deleteEst($id_est)
 	{
 		$conn = $this->db->connect();
@@ -105,5 +111,18 @@ class DeleteModel extends Model
 			return false;
 		}
 		return $res;
+	}
+	public function deleteAdmin($cod_admin)
+	{
+		$conn = $this->db->connect();
+
+		// obtiene la cantidad de administradores
+		$nro_admins = $conn->query("SELECT COUNT(*) AS nro_admins FROM administrador")->fetch_assoc()['nro_admins'];
+		if ($nro_admins > 1) {
+			$res = $conn->query("DELETE FROM administrador WHERE cod_admin=$cod_admin");
+			return $res;
+		} else {
+			return false;
+		}
 	}
 }

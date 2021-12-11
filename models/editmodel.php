@@ -44,6 +44,12 @@ class EditModel extends Model
 		$res = $conn->query("SELECT * FROM materia WHERE cod_mat='$cod_mat'");
 		return $res;
 	}
+	public function getAdmin($id_admin)
+	{
+		$conn = $this->db->connect();
+		$res = $conn->query("SELECT * FROM administrador WHERE cod_admin=$id_admin");
+		return $res;
+	}
 
 	public function actualizarEst($est, $curso)
 	{
@@ -114,6 +120,25 @@ class EditModel extends Model
 			SET nombre_mat='{$mat['nombre_mat']}'
 			WHERE cod_mat='{$mat['cod_mat']}'
 		";
+		$res = $conn->query($qry_update);
+		if (!$res) {
+			return false;
+		}
+		return $res;
+	}
+	public function actualizarAdmin($admin)
+	{
+		$conn = $this->db->connect();
+		$qry_update = "
+			UPDATE administrador
+			SET
+				nombre_user='{$admin['nombre_user']}',
+				correo='{$admin['correo']}',
+				password='{$admin['password']}'
+			WHERE
+				cod_admin={$admin['cod_admin']}
+		";
+
 		$res = $conn->query($qry_update);
 		if (!$res) {
 			return false;
