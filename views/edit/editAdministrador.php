@@ -25,7 +25,10 @@
 			</div>
 			<div class="row">
 				<label for="password">Nueva contraseña</label>
-				<input required type="password" name="password" id="password">
+				<div class="pass">
+					<input required class="inputPass" type="password" name="password" id="password">
+					<span id="ico" class="ico"><i class="fas fa-eye"></i></span>
+				</div>
 			</div>
 			<div class="row">
 				<input type="hidden" name="cod_admin" value="<?= $this->admin['cod_admin'] ?>">
@@ -35,6 +38,6 @@
 			</div>
 		</form>
 	</div>
-
 </div>
+<script src=" <?= URL . "views/public/js/inputsUpdate.js" ?>"></script>
 <?php require_once 'views/templates/footer.php'; ?>

@@ -18,19 +18,39 @@
   padding: 5px;
   transition: 0.3s;
 }
-.form .row .col .add {
+
+.form .row .pass .ico {
   background: transparent;
+  display: inline;
+  cursor: pointer;
   border: none;
-  margin: auto;
+  color: #aaa;
   font-size: 20px;
   padding-right: 10px;
   font-family: "Cairo", sans-serif;
+
+  position: absolute;
+  top: 1px;
+  right: 0;
 }
 
+.form .row .pass,
 .form .row input,
 .form .row select,
 .form .row label {
+  position: relative;
+  font-size: 20px;
   width: 50%;
+}
+.form .row .pass {
+  display: flex;
+  /*grid-template-columns: 1fr auto;*/
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.form .row .pass .inputPass {
+  width: 100%;
 }
 
 .form .row input[type="text"],
@@ -38,6 +58,7 @@
 .form .row input[type="password"],
 .form .row select {
   font-family: "Cairo", sans-serif;
+  font-size: 20px;
 }
 
 .form .row input,

@@ -10,7 +10,10 @@
 		</div>
 		<div class="row hidden">
 			<label for="password">Contraseña</label>
-			<input required type="text" name="password" id="password">
+			<div class="pass">
+				<input class="inputPass" required type="password" name="password" id="password">
+				<span id="ico" class="ico"><i class="fas fa-eye"></i></span>
+			</div>
 		</div>
 		<div class="row">
 			<button class="btn" type="submit">Agregar</button>
