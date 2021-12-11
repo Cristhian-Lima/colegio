@@ -15,7 +15,7 @@ class Edit extends Controller
 
 	private function setUrlRef()
 	{
-		$this->url_ref = $_SESSION['url_ref'];
+		$this->url_ref = isset($_SESSION['url_ref']) ? $_SESSION['url_ref'] : "";
 		$_SESSION['url_ref'] = null;
 	}
 	public function render($view = "index")
